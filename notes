@@ -1,0 +1,33 @@
+You can use Materal UI v5 for reactjs 18
+https://mui.com/material-ui/getting-started/installation/
+
+OR
+
+There is another way to make MUI work with Reactjs is to degrade the version of react to 17.
+
+You just need to degrade react version and react-dom version to 17 to make it work.
+
+Check your package.json file there you will find react and react-dom version to 18 you have to degrade the version to make mui v4 work with Reactjs.
+
+Use --force flag while degrading to version 17
+
+OR if you don't want to degrade your react 18 to 17 then follow the below instruction.
+
+For react >= 17.0.0 and react-dom >= 17.0.0 Use MUI v5.
+
+If you are using react version greater than 17 you must install Material UI (version) v5.
+
+Note: if anyhow MUI v5 does not work with react@17.0.x then install MUI (version) v4.
+
+npm install @mui/material @emotion/react @emotion/styled
+AND
+
+For react >= 16.8.0 and react-dom >= 16.8.0 then use this.
+
+// with npm
+npm install @material-ui/core
+
+// with yarn
+yarn add @material-ui/core
+
+*******************************************************
