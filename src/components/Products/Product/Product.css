@@ -1,3 +1,6 @@
-.cartIcon:hover{
-    cursor: pointer;
+.iconButton:hover{
+    cursor:pointer;
+}
+.iconButton:hover .cartIcon{
+    color:rgb(80, 207, 48);
 }
