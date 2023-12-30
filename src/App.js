@@ -29,12 +29,16 @@ function App() {
     }
   };
   //cart handler
-  const cartHandler = async (id, number) => {
-    const cartItem = await commerce.cart.add(id, number);
-    setCart(cartItem.cart);
+  //de el function elly betupdate ya saeeeed
+const cartHandler = async (id, number) => {
+  const cartItem = await commerce.cart.add(id, number);
+  setCart((prevCart) => {
     console.log("you Added item to cart");
-    console.log(cart);
-  };
+    console.log(prevCart);
+    return cartItem.cart;
+  });
+};
+
 
   useEffect(() => {
     fetchData();
