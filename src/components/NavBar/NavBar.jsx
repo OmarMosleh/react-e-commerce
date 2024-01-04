@@ -40,7 +40,7 @@ function NavBar({cart}) {
           </Typography>{
             home &&(
           <Button component={Link}  to="/cart" color="inherit">
-            <Badge badgeContent={!cart.total_items?"0":cart.total_items} color="warning">
+            <Badge badgeContent={!cart?.total_items?"0":cart?.total_items} color="warning">
               <ShoppingCartIcon />
             </Badge>
           </Button>)

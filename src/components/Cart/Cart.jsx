@@ -1,9 +1,8 @@
 import { Container, Grid, Typography, Button, Box } from "@mui/material";
 import CartItem from "./CartItem/CartItem";
 import { Link } from "react-router-dom";
-function Cart({ cart }) {
+function Cart({ cart,cartUpdateQtyHandler, removeFromCartHandler, emptyCartHandler }) {
   const empty = !cart.line_items || !cart.line_items.length;
-  console.log(empty);
   console.log(cart);
   return (
     <>
@@ -22,7 +21,7 @@ function Cart({ cart }) {
             <Grid container spacing={2}>
               {cart.line_items.map((item) => (
                 <Grid item key={item.id}>
-                  <CartItem item={item} />
+                  <CartItem item={item} cartUpdateQtyHandler={cartUpdateQtyHandler} removeFromCartHandler={removeFromCartHandler} />
                 </Grid>
               ))}
             </Grid>
@@ -41,14 +40,18 @@ function Cart({ cart }) {
                   minWidth:"50px",
                   maxHeight:"27px",
                   padding:"7px"
-                }}>
+                }}
+                onClick={emptyCartHandler}
+                >
                   EMPTY CART
                 </Button>
                 <Button variant="contained" color="success" sx={{
                   minWidth:"50px",
                   maxHeight:"27px",
                   padding:"7px"
-                }}>
+                }}
+                component={Link} to="/checkout"
+                >
                   CHECK OUT !
                 </Button>
               </Box>

@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, CardActions } from "@mui/material";
-function CartItem({ item }) {
+function CartItem({ item, cartUpdateQtyHandler, removeFromCartHandler }) {
   return (
     <Grid item>
       <Card sx={{ maxWidth: 345, minWidth: 220 }}>
@@ -43,6 +43,7 @@ function CartItem({ item }) {
                 margin: "0 7px",
                 minWidth: 0,
               }}
+              onClick={()=> cartUpdateQtyHandler(item.id, item.quantity + 1)}
             >
               +
             </Button>
@@ -59,11 +60,12 @@ function CartItem({ item }) {
                 margin: "0 7px",
                 minWidth: 0,
               }}
+               onClick={()=> cartUpdateQtyHandler(item.id, item.quantity-1)}
             >
               -
             </Button>
           </Box>
-          <Button variant="outlined" color="error">
+          <Button variant="outlined" color="error" onClick={()=>removeFromCartHandler(item.id)}>
             Remove
           </Button>
         </CardActions>

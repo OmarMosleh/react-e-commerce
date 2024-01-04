@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import commerce from "./lib/commerce";
-import { Products, NavBar, Cart } from "./components";
+import { Products, NavBar, Cart, CheckOut } from "./components";
 import {
   BrowserRouter as Router,
   Routes,
@@ -10,6 +10,9 @@ import {
 function App() {
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState({});
+
+
+
   const fetchData = async () => {
     try {
       const { data } = await commerce.products.list();
@@ -23,23 +26,31 @@ function App() {
     try {
       const myCart = await commerce.cart.retrieve();
       setCart(myCart);
-      console.log(cart);
     } catch (error) {
       console.log("couldn't fetch cart" + error);
     }
   };
   //cart handler
-  //de el function elly betupdate ya saeeeed
 const cartHandler = async (id, number) => {
   const cartItem = await commerce.cart.add(id, number);
-  setCart((prevCart) => {
-    console.log("you Added item to cart");
-    console.log(prevCart);
-    return cartItem.cart;
-  });
+  setCart(cartItem);
 };
-
-
+//cartUpdateQtyHandler
+const cartUpdateQtyHandler = async (productId,qty)=>{
+  const response = await commerce.cart.update(productId,{quantity :qty});
+  setCart(response);
+}
+//removeFromCartHandler
+const removeFromCartHandler = async(productId)=>{
+  const response = await commerce.cart.remove(productId);
+  setCart(response);
+  console.log(productId+ "has been removed")
+}
+//empty cart
+const emptyCartHandler =async ()=>{
+  const response = await commerce.cart.empty();
+  setCart(response);
+}
   useEffect(() => {
     fetchData();
     fetchCart();
@@ -47,10 +58,11 @@ const cartHandler = async (id, number) => {
   return (
     <Router>
       <div>
-        <NavBar cart={cart} />
+        {cart&&<NavBar cart={cart} />}
         <Routes>
           <Route path="/" element={<Products items={items} cartHandler={cartHandler} />} />
-          <Route path="/cart" element={<Cart cart={cart} />} />
+          <Route path="/cart" element={<Cart cart={cart} cartUpdateQtyHandler={cartUpdateQtyHandler} removeFromCartHandler={removeFromCartHandler} emptyCartHandler={emptyCartHandler} />} />
+          <Route path="/checkout" element={<CheckOut  />} />
         </Routes>
       </div>
     </Router>
