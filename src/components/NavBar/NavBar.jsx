@@ -30,12 +30,12 @@ function NavBar({cart}) {
             sx={{ mr: 2 }}
           >
             <img
-              src="https://png.pngtree.com/png-clipart/20211009/original/pngtree-letter-s-logo-png-design-vector-png-image_6848019.png"
+              src="https://www.pngmart.com/files/7/Market-PNG-Transparent-Image.png"
               alt="logo"
               style={{ maxWidth: "40px" }}
             />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
             Shopster
           </Typography>{
             home &&(

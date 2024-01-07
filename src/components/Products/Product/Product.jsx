@@ -14,7 +14,7 @@ function Product({ props, cartHandler }) {
       <Card sx={{ maxWidth: 345 }}>
         <CardActionArea>
           <CardMedia component="img" height="140" image={image.url} alt={name} />
-          <CardContent>
+          <CardContent >
             <Typography gutterBottom variant="h5" component="div">
               {name}
             </Typography>
@@ -22,7 +22,7 @@ function Product({ props, cartHandler }) {
               dangerouslySetInnerHTML={{ __html: description }}
               variant="body2"
               color="text.secondary"
-              style={{ fontSize: '15px' }}
+              style={{ fontSize: '15px', height:"65px" }}
             />
          </CardContent>
         </CardActionArea>
