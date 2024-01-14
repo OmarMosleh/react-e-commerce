@@ -3,7 +3,6 @@ import CartItem from "./CartItem/CartItem";
 import { Link } from "react-router-dom";
 function Cart({ cart,cartUpdateQtyHandler, removeFromCartHandler, emptyCartHandler }) {
   const empty = !cart.line_items || !cart.line_items.length;
-  console.log(cart);
   return (
     <>
       <Container fixed sx={{ marginTop: "7rem" }}>
@@ -35,20 +34,16 @@ function Cart({ cart,cartUpdateQtyHandler, removeFromCartHandler, emptyCartHandl
               <Typography variant="h6">
                 Subtotal : {cart.subtotal.formatted_with_code}
               </Typography>
-              <Box sx={{ '& button': { m: 1, fontSize: '14px' } }}>
+              <Box sx={{ '& button': { m: 1, fontSize: '12px' } }}>
                 <Button variant="contained" color="error" sx={{
-                  minWidth:"50px",
-                  maxHeight:"27px",
-                  padding:"7px"
+                  padding:"8px"
                 }}
                 onClick={emptyCartHandler}
                 >
                   EMPTY CART
                 </Button>
-                <Button variant="contained" color="success" sx={{
-                  minWidth:"50px",
-                  maxHeight:"27px",
-                  padding:"7px"
+                <Button variant="contained" color="primary" sx={{
+                  padding:"8px"
                 }}
                 component={Link} to="/checkout"
                 >

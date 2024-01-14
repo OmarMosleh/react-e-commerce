@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import commerce from "./lib/commerce";
 import { Products, NavBar, Cart, CheckOut } from "./components";
+import Footer from "./components/Footer/Footer";
 import {
   BrowserRouter as Router,
   Routes,
@@ -10,6 +11,8 @@ import {
 function App() {
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState({});
+  const [order, setOrder] = useState ({});
+  const [errorMessage, setErrorMessage]= useState("");
 
 
 
@@ -51,6 +54,21 @@ const emptyCartHandler =async ()=>{
   const response = await commerce.cart.empty();
   setCart(response);
 }
+//refresh cart function
+const cartRefresh = () =>{
+  const newCart =commerce.cart.refresh();
+  setCart(newCart);
+}
+// handle checkout in paymentform 
+const checkoutHandler = async (checkoutTokenId,newOrder)=>{
+  try{
+    const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
+    setOrder(incomingOrder);
+    cartRefresh();
+  }catch(error){
+    setErrorMessage(error.data.error.message);
+  }
+}
   useEffect(() => {
     fetchData();
     fetchCart();
@@ -62,7 +80,7 @@ const emptyCartHandler =async ()=>{
         <Routes>
           <Route path="/" element={<Products items={items} cartHandler={cartHandler} />} />
           <Route path="/cart" element={<Cart cart={cart} cartUpdateQtyHandler={cartUpdateQtyHandler} removeFromCartHandler={removeFromCartHandler} emptyCartHandler={emptyCartHandler} />} />
-          <Route path="/checkout" element={<CheckOut cart={cart}  />} />
+          <Route path="/checkout" element={<CheckOut cart={cart} order={order} error={errorMessage} checkoutHandler={checkoutHandler} />} />
         </Routes>
       </div>
     </Router>

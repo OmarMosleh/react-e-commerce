@@ -1,7 +1,7 @@
 import { Grid, TextField } from "@mui/material";
 
 function FormField({ formik, required, name, type }) {
-  console.log(formik.values);
+  // console.log(formik.values);
   return (
     <>
       <Grid item xs={12} sm={6} md={6} lg={6}>
