@@ -31,3 +31,8 @@ npm install @material-ui/core
 yarn add @material-ui/core
 
 *******************************************************
+=> we used material UI core and material UI icons.
+shopster => commrce.js (tipigi7410@vkr1.com)
+stripe mail => wonacev134@pursip.com
+react Router v6 to make it single page and handle routing between pages on the client side 
+formik and yup=> to handle form 
